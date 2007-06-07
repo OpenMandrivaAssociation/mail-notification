@@ -12,6 +12,7 @@ License: 	GPL
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.gz
 Source1: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.gz.sig
+Patch: mail-notification-4.0-evo2.12.patch
 URL: 		http://www.nongnu.org/mailnotify/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:  libeel-devel >= 2.6
@@ -59,6 +60,8 @@ Install this if you use Evolution.
 %prep
 
 %setup -q -n %fname
+%patch -p1 -b .evo2.12
+autoconf
 
 %build
 export LDFLAGS="-Wl,--export-dynamic"
