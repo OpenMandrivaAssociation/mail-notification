@@ -1,6 +1,6 @@
 %define name mail-notification
 %define version 4.0
-%define rel 1
+%define rel 2
 %define evo %(rpm -q evolution-devel --queryformat %%{VERSION})
 %define fname %name-%version
 
@@ -62,6 +62,7 @@ Install this if you use Evolution.
 %setup -q -n %fname
 %patch -p1 -b .evo2.12
 autoconf
+automake
 
 %build
 export LDFLAGS="-Wl,--export-dynamic"
