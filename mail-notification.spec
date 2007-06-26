@@ -30,6 +30,8 @@ BuildRequires:  scrollkeeper
 BuildRequires:  perl-XML-Parser
 BuildRequires:  mono-devel
 BuildRequires:  desktop-file-utils
+#gw aclocal called:
+BuildRequires:  intltool
 Requires(post): scrollkeeper
 Requires(postun): scrollkeeper
 
