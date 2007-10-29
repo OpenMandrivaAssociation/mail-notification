@@ -1,6 +1,6 @@
 %define name mail-notification
 %define version 4.1
-%define rel 1
+%define rel 2
 %define evo %(rpm -q evolution-devel --queryformat %%{VERSION})
 %define fname %name-%version
 
@@ -63,6 +63,7 @@ Install this if you use Evolution.
 
 %setup -q -n %fname
 %patch -p1 -b .evo2.12
+intltoolize --force
 aclocal -I m4
 autoconf
 automake
@@ -127,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 %_datadir/applications/*
 %dir %_datadir/omf/mail-notification/
 %_datadir/omf/mail-notification/%name-C.omf
-%_libdir/bonobo/servers/*
+%_libdir/bonobo/servers/GNOME_MailNotification.server
 %_sysconfdir/gconf/schemas/mail-notification.schemas
 %_datadir/icons/hicolor/*/apps/*
 %_menudir/%name
@@ -139,5 +140,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr (-,root,root)
 %doc COPYING
 %_libdir/evolution/*/plugins/*
-
+%_libdir/bonobo/servers/GNOME_MailNotification_Evolution.server
 
