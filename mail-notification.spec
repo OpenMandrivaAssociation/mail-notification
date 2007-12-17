@@ -14,7 +14,6 @@ Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
 Source1: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2.sig
 URL: 		http://www.nongnu.org/mailnotify/
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:  libeel-devel >= 2.6
 BuildRequires:  libsoup-devel >= 2.2
 BuildRequires:  libsasl-devel
