@@ -75,17 +75,6 @@ rm -rf $RPM_BUILD_ROOT %name.lang
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 rm -f %buildroot%_libdir/evolution/*/plugins/*a
 %find_lang %name --with-gnome
-mkdir -p %{buildroot}%{_menudir}
-cat << EOF > %{buildroot}%{_menudir}/%{name}
-?package(%{name}): \
- command="%{_bindir}/%{name} --display-main-window" \
- icon="%{name}.png" \
- longtitle="Get notified when new mail arrives" \
- needs="x11" \
- section="Internet/Mail" \
- title="Mail Notification" \
- startup_notify="yes" xdg="true"
-EOF
 desktop-file-install --vendor="" \
   --remove-category="Application" \
   --add-category="X-MandrivaLinux-Internet-Mail" \
@@ -126,7 +115,6 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/bonobo/servers/GNOME_MailNotification.server
 %_sysconfdir/gconf/schemas/mail-notification.schemas
 %_datadir/icons/hicolor/*/apps/*
-%_menudir/%name
 %_liconsdir/%name.png
 %_iconsdir/%name.png
 %_miconsdir/%name.png
