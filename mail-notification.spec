@@ -1,9 +1,8 @@
 %define name mail-notification
 %define version 5.0
-%define prerel rc1
-%define rel 0.%prerel.1
+%define rel 1
 %define evo %(rpm -q evolution-devel --queryformat %%{VERSION})
-%define fname %name-%version-%prerel
+%define fname %name-%version
 
 Version: 	%{version}
 Summary: 	New mail status tray icon
@@ -13,10 +12,11 @@ License: 	GPL
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
 Source1: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2.sig
+# gw fix build with new eel
+Patch: http://launchpadlibrarian.net/11684452/mail-notification-5.0-eelfix.diff
 URL: 		http://www.nongnu.org/mailnotify/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:  libeel-devel >= 2.6
-BuildRequires:  libsoup-devel >= 2.2
 BuildRequires:  libsasl-devel
 BuildRequires:  openssl-devel
 BuildRequires:	libgmime-devel
@@ -62,6 +62,7 @@ Install this if you use Evolution.
 %prep
 
 %setup -q -n %fname
+%patch -p0
 
 %build
 export LDFLAGS="-Wl,--export-dynamic"
