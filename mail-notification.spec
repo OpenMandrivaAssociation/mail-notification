@@ -1,5 +1,5 @@
 %define name mail-notification
-%define version 5.0
+%define version 5.1
 %define rel 1
 %define evo %(rpm -q evolution-devel --queryformat %%{VERSION})
 %define fname %name-%version
@@ -12,11 +12,8 @@ License: 	GPL
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
 Source1: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2.sig
-# gw fix build with new eel
-Patch: http://launchpadlibrarian.net/11684452/mail-notification-5.0-eelfix.diff
 URL: 		http://www.nongnu.org/mailnotify/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
-BuildRequires:  libeel-devel >= 2.6
 BuildRequires:  libsasl-devel
 BuildRequires:  openssl-devel
 BuildRequires:	libgmime-devel
@@ -62,18 +59,15 @@ Install this if you use Evolution.
 %prep
 
 %setup -q -n %fname
-%patch -p0
 
 %build
-export LDFLAGS="-Wl,--export-dynamic"
-%configure2_5x
-
-%make
+./jb configure prefix=%_prefix sysconfdir=%_sysconfdir gconf-schemas-dir=%_sysconfdir/gconf/schemas ldflags="-Wl,--export-dynamic" destdir=%buildroot
+./jb build 
 
 %install
 rm -rf $RPM_BUILD_ROOT %name.lang
 
-GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
+GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 ./jb install
 rm -f %buildroot%_libdir/evolution/*/plugins/*a
 %find_lang %name --with-gnome
 desktop-file-install --vendor="" \
@@ -106,14 +100,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %name.lang
 %defattr (-,root,root)
-%doc README COPYING INSTALL TODO 
+%doc README COPYING TODO 
 %config(noreplace) %_sysconfdir/xdg/autostart/mail-notification.desktop
 %_bindir/*
 %_datadir/%name
 %_datadir/applications/*
 %dir %_datadir/omf/mail-notification/
 %_datadir/omf/mail-notification/%name-C.omf
-%_libdir/bonobo/servers/GNOME_MailNotification.server
 %_sysconfdir/gconf/schemas/mail-notification.schemas
 %_datadir/icons/hicolor/*/apps/*
 %_liconsdir/%name.png
@@ -124,5 +117,4 @@ rm -rf $RPM_BUILD_ROOT
 %defattr (-,root,root)
 %doc COPYING
 %_libdir/evolution/*/plugins/*
-%_libdir/bonobo/servers/GNOME_MailNotification_Evolution.server
 
