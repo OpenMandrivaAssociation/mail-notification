@@ -1,5 +1,5 @@
 %define name mail-notification
-%define version 5.3
+%define version 5.4
 %define rel 1
 %define evo %(rpm -q evolution-devel --queryformat %%{VERSION})
 %define fname %name-%version
