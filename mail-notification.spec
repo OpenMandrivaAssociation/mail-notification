@@ -81,19 +81,23 @@ ln -s %_datadir/icons/hicolor/32x32/apps/mail-notification.png %{buildroot}%{_ic
 ln -s %_datadir/icons/hicolor/16x16/apps/mail-notification.png %{buildroot}%{_miconsdir}/%{name}.png
 
 
+%if %mdkversion < 200900
 %post 
 %update_menus
 %post_install_gconf_schemas mail-notification
 %update_scrollkeeper
 %update_icon_cache hicolor
+%endif
 
 %preun
 %preun_uninstall_gconf_schemas mail-notification
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
 %clean_scrollkeeper
 %clean_icon_cache hicolor
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
