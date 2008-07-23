@@ -61,7 +61,9 @@ Install this if you use Evolution.
 %setup -q -n %fname
 
 %build
-./jb configure prefix=%_prefix sysconfdir=%_sysconfdir gconf-schemas-dir=%_sysconfdir/gconf/schemas ldflags="-Wl,--export-dynamic" destdir=%buildroot
+#gw link error in evolution plugin
+%define _disable_ld_no_undefined 1
+./jb configure prefix=%_prefix sysconfdir=%_sysconfdir gconf-schemas-dir=%_sysconfdir/gconf/schemas cflags="%optflags" ldflags="%ldflags -Wl,--export-dynamic" destdir=%buildroot
 ./jb build 
 
 %install
