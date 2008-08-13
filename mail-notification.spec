@@ -19,7 +19,8 @@ BuildRequires:  libsasl-devel
 BuildRequires:  openssl-devel
 BuildRequires:	libgmime-devel
 BuildRequires:  evolution-devel
-BuildRequires:  evolution-data-server-devel >= 1.4
+#gw with the patch1 we need e-d-s 2.23
+BuildRequires:  evolution-data-server-devel >= 2.23
 BuildRequires:  libgnomeprintui-devel
 BuildRequires:  libnotify-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
