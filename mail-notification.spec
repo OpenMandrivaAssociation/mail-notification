@@ -1,18 +1,20 @@
 %define name mail-notification
 %define version 5.4
 %define rel 7
+
 %define evo %(rpm -q evolution-devel --queryformat %%{VERSION})
 %define fname %name-%version
 
 Version: 	%{version}
 Summary: 	New mail status tray icon
 Name: 		%{name}
-Release: 	%mkrel %rel
+Release: 	%mkrel 5
 License: 	GPLv3+ and GFDL+
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
 Source1: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2.sig
 Patch: mail-notification-5.4-evo2.23.patch
+Patch1: mail-notification-5.4-gmime.patch
 URL: 		http://www.nongnu.org/mailnotify/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:  libsasl-devel
@@ -62,6 +64,7 @@ Install this if you use Evolution.
 
 %setup -q -n %fname
 %patch -p1 -b .evo2.23
+%patch1 -p1
 touch build/src/mn-evolution-server.gob.stamp
 
 %build
