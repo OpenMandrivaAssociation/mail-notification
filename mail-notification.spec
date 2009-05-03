@@ -1,6 +1,5 @@
 %define name mail-notification
 %define version 5.4
-%define rel 7
 
 %define evo %(rpm -q evolution-devel --queryformat %%{VERSION})
 %define fname %name-%version
@@ -8,7 +7,7 @@
 Version: 	%{version}
 Summary: 	New mail status tray icon
 Name: 		%{name}
-Release: 	%mkrel 5
+Release: 	%mkrel 8
 License: 	GPLv3+ and GFDL+
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
