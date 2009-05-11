@@ -7,7 +7,7 @@
 Version: 	%{version}
 Summary: 	New mail status tray icon
 Name: 		%{name}
-Release: 	%mkrel 8
+Release: 	%mkrel 9
 License: 	GPLv3+ and GFDL+
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
