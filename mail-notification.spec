@@ -7,7 +7,7 @@
 Version: 	%{version}
 Summary: 	New mail status tray icon
 Name: 		%{name}
-Release: 	%mkrel 9
+Release: 	%mkrel 10
 License: 	GPLv3+ and GFDL+
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
@@ -34,6 +34,7 @@ BuildRequires:  desktop-file-utils
 BuildRequires:  intltool
 Requires(post): scrollkeeper
 Requires(postun): scrollkeeper
+Suggests: fetchyahoo
 
 %description
 Mail Notification is a status icon (aka tray icon) that informs you if 
