@@ -7,13 +7,17 @@
 Version: 	%{version}
 Summary: 	New mail status tray icon
 Name: 		%{name}
-Release: 	%mkrel 10
+Release: 	%mkrel 11
 License: 	GPLv3+ and GFDL+
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
 Source1: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2.sig
-Patch: mail-notification-5.4-evo2.23.patch
+#gw from Fedora, port to Evolution 2.29 API
+#gw patch generated C sources
+Patch: mail-notification-5.4-evo2.29.patch
 Patch1: mail-notification-5.4-gmime.patch
+# gw from Fedora, SASL off-by-one error
+Patch2:	mail-notification-5.4-sasl_encode64.patch
 URL: 		http://www.nongnu.org/mailnotify/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:  libsasl-devel
@@ -63,8 +67,19 @@ Install this if you use Evolution.
 %prep
 
 %setup -q -n %fname
-%patch -p1 -b .evo2.23
+%patch -b .evo2.23
 %patch1 -p1
+%patch2 -p1
+
+# Drop #line statements in C sources generated bu .gob,
+# for the proper debuginfo package
+pushd build/src
+for f in *.c *.h
+do
+sed -i '/^#line / d' $f
+done
+popd 
+
 touch build/src/mn-evolution-server.gob.stamp
 
 %build
