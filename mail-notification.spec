@@ -26,6 +26,7 @@ BuildRequires:	libgmime-devel
 BuildRequires:  evolution-devel
 #gw with the patch1 we need e-d-s 2.23
 BuildRequires:  evolution-data-server-devel >= 2.23
+BuildRequires:  libgnomeui2-devel
 BuildRequires:  libgnomeprintui-devel
 BuildRequires:  libnotify-devel
 BuildRequires:  avahi-glib-devel avahi-client-devel
