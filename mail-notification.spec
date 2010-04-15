@@ -7,7 +7,7 @@
 Version: 	%{version}
 Summary: 	New mail status tray icon
 Name: 		%{name}
-Release: 	%mkrel 11
+Release: 	%mkrel 12
 License: 	GPLv3+ and GFDL+
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
@@ -18,6 +18,8 @@ Patch: mail-notification-5.4-evo2.29.patch
 Patch1: mail-notification-5.4-gmime.patch
 # gw from Fedora, SASL off-by-one error
 Patch2:	mail-notification-5.4-sasl_encode64.patch
+# (fc) 5.4-12mdv fix missing icons
+Patch3: mail-notification-5.4-missing-icons.patch
 URL: 		http://www.nongnu.org/mailnotify/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:  libsasl-devel
@@ -71,6 +73,7 @@ Install this if you use Evolution.
 %patch -b .evo2.23
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1 -b .missing_icons
 
 # Drop #line statements in C sources generated bu .gob,
 # for the proper debuginfo package
