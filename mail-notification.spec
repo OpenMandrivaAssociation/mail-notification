@@ -39,6 +39,7 @@ BuildRequires:  mono-devel
 BuildRequires:  desktop-file-utils
 #gw aclocal called:
 BuildRequires:  intltool
+BuildRequires:  libglade2-devel
 Requires(post): scrollkeeper
 Requires(postun): scrollkeeper
 Suggests: fetchyahoo
@@ -85,6 +86,9 @@ done
 popd 
 
 touch build/src/mn-evolution-server.gob.stamp
+
+#needed by patch3
+autoreconf
 
 %build
 #gw link error in evolution plugin
