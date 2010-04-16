@@ -87,9 +87,6 @@ popd
 
 touch build/src/mn-evolution-server.gob.stamp
 
-#needed by patch3
-autoreconf
-
 %build
 #gw link error in evolution plugin
 %define _disable_ld_no_undefined 1
