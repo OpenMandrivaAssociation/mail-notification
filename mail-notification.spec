@@ -7,14 +7,14 @@
 Version: 	%{version}
 Summary: 	New mail status tray icon
 Name: 		%{name}
-Release: 	%mkrel 15
+Release: 	%mkrel 16
 License: 	GPLv3+ and GFDL+
 Group: 		Networking/Mail
 Source: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2
 Source1: 	http://savannah.nongnu.org/download/mailnotify/%{fname}.tar.bz2.sig
 #gw from Fedora, port to Evolution 2.31 API
 #gw patch generated C sources
-Patch: mail-notification-5.4-evo2.31.patch
+Patch0: mail-notification-5.4-evo2.31.patch
 Patch1: mail-notification-5.4-gmime.patch
 # gw from Fedora, SASL off-by-one error
 Patch2:	mail-notification-5.4-sasl_encode64.patch
