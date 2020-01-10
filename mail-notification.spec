@@ -74,7 +74,7 @@ Install this if you use Evolution.
 %prep
 
 %setup -q -n %fname
-%apply_patches
+%autopatch -p1
 
 # Drop #line statements in C sources generated bu .gob,
 # for the proper debuginfo package
