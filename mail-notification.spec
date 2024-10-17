@@ -23,7 +23,7 @@ Patch3: mail-notification-5.4-missing-icons.patch
 Patch4: mail-notification-5.4-camel-includes.patch
 #gw fix linking
 Patch5: mail-notification-5.4-evolution-gtkhtml.patch
-URL: 		http://www.nongnu.org/mailnotify/
+URL: 		https://www.nongnu.org/mailnotify/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-buildroot
 BuildRequires:  libsasl-devel
 BuildRequires:  openssl-devel
